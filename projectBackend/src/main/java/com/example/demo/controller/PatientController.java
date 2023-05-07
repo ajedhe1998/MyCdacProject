@@ -16,14 +16,14 @@ import com.example.demo.model.Patient;
 import com.example.demo.service.PatientService;
 
 @CrossOrigin("*")
-
-
 @RestController
 @RequestMapping("/patient")
 public class PatientController {
 
 	@Autowired
 	private PatientService pservice;
+	
+	
 	
 	@PostMapping("/pregister")
 	public Patient registerPatient(@RequestBody Patient p) throws Exception
@@ -35,17 +35,24 @@ public class PatientController {
 		return pservice.registerPatient(p);
 	}
 	
+	
+	
+	
+	
 	@GetMapping("/plogin")
 	public ResponseEntity<Patient> loginPatient(@RequestParam String email,@RequestParam String password)
 	{
 		return pservice.loginUser(email, password);
 	}
 	
+	
+	
 	@PostMapping("/ploginl")
 	public ResponseEntity<Patient> loginPatient(@RequestBody Patient p)
 	{
 		return pservice.loginUser1(p);
 	}
+	
 	
 	@PostMapping("/upatient")
 	public Patient updatePatient(@RequestBody Patient patient) 

@@ -19,7 +19,6 @@ public class Patient {
 	private int p_id;
 	@Column(nullable = false)
 	private String fname;
-
 	@Column(nullable = false)
 	private String address;
 	@Column(nullable = false)

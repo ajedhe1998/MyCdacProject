@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Doctor;
 import com.example.demo.service.DoctorService;
 
-
-
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/doctor")
@@ -40,11 +38,15 @@ public class DoctorController
 	}
 	
 	
+	
+	
 	@GetMapping("/dlogin")
 	public ResponseEntity<Doctor> loginDoctor(@RequestParam String email,@RequestParam String password)
 	{
 		return doctorservice.loginUser(email, password);
 	}
+	
+	
 	
 	@PostMapping("/dloginl")
 	public ResponseEntity<Doctor> loginDoctor(@RequestBody Doctor doc)
@@ -53,11 +55,14 @@ public class DoctorController
 	}
 	
 	
+	
 	@GetMapping("/adoctor")
 	public List<Doctor> allDoctor()
 	{
 		return doctorservice.allDoctor();
 	}
+	
+	
 	
 	@PostMapping("/udoctor")
 	public Doctor updateDoctor(@RequestBody  Doctor doctor)

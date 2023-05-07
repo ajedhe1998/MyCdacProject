@@ -36,7 +36,7 @@ public class Appointment {
 
 	public Appointment() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public Appointment(int ap_id, int d_id, int p_id, Date date, String time, String status) {

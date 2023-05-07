@@ -13,17 +13,10 @@ import com.example.demo.service.AdminService;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/admin")
-public class AdminController {
+public class AdminController 
+{
 	@Autowired
 	private AdminService aservice;
-	
-	
-	@GetMapping("/adminl")
-	public ResponseEntity<AdminModel> loginadmin(@RequestParam String email,@RequestParam String password)
-	{
-		System.out.println(email);
-		return aservice.loginadminser(email, password);
-	}
 	
 	
 	@PostMapping("/adminlogin")
@@ -33,3 +26,5 @@ public class AdminController {
 	}
 
 }
+
+//https://localhost:8080/admin/adminlogin

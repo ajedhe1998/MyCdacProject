@@ -17,6 +17,15 @@ public class DoctorService
 			return doctorrepo.save(doctor);
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public ResponseEntity<Doctor> loginUser(String email, String password) 
 	{

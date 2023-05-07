@@ -10,14 +10,19 @@ public class AdminService {
 	@Autowired
 	private AdminRepo arepo; 
 	
+	@Autowired
+	private ApiCountService apiCountService;
 	
 	
 	
 	public ResponseEntity<AdminModel> aloginUser1(AdminModel user) {
 		AdminModel usr = arepo.findByEmail(user.getEmail());
 		if(user.getEmail().equals(usr.getEmail()) && user.getPassword().equals(usr.getPassword())) {
+			apiCountService.increamentDAilyHitCount();
+			apiCountService.increamentWeeklyHitCount();
 			return new ResponseEntity<AdminModel>(usr,HttpStatus.ACCEPTED);
 		}
+		
 		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 	}
 	

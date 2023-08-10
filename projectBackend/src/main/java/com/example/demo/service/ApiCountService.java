@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.Year;
 import java.time.temporal.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,11 +18,18 @@ public class ApiCountService {
 	
 	private Map<LocalDate, Integer> hitcountDaily = new HashMap<>();
 	private Map<LocalDate, Integer> hitcountweekly = new HashMap<>();
+	private Map<Integer, Integer> hitcountyear = new HashMap<>();
 	
 	
 	
 	
 	
+	public Map<Integer, Integer> getHitcountyear() {
+		return hitcountyear;
+	}
+
+
+
 	public void increamentDAilyHitCount() {
 		LocalDate today = LocalDate.now();
 		hitcountDaily.merge(today, 1, Integer::sum);
@@ -30,12 +38,12 @@ public class ApiCountService {
 	
 	
 	
-	public ApiDailyCounter getHitcountForDay(LocalDate date) {
+	public Map<LocalDate, Integer> getHitcountForDay(LocalDate date) {
 		
 		ApiDailyCounter counter = new ApiDailyCounter();
 		counter.dailycount.put(date,hitcountDaily.getOrDefault(date,0));
 		
-		return counter;
+		return counter.dailycount;
 		
 	}
 	
@@ -48,7 +56,7 @@ public class ApiCountService {
 	}
 	
 	
-	public ApiWeeklyCounter getHitCountForWeek(LocalDate date)  {
+	public Map<LocalDate, Integer> getHitCountForWeek(LocalDate date)  {
 		
 		
 		TemporalAdjuster temporalAdjuster = TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY);
@@ -64,7 +72,31 @@ public class ApiCountService {
 		
 		counter.weeklycount.put(date, hitcount);
 		
-		return counter;
+		return counter.weeklycount;
 	}
 	
+	
+	
+	
+	
+	
+	public void increramentYearlyHitCount() {
+		
+		
+		int currentYear = Year.now().getValue();
+		int hitCount = hitcountyear.getOrDefault(currentYear,0);
+		hitcountyear.put(currentYear,hitCount + 1);
+		
+		
+	}
+	
+	
+	
+	public int  getHitCountForCurrentYear() {
+		
+		int currentYear = Year.now().getValue();
+		
+		return hitcountyear.getOrDefault(currentYear, 0);
+		
+	}
 }

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 import java.time.LocalDate;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,7 +30,7 @@ public class AdminController
 	private ApiCountService apiCountService;
 	
 	@GetMapping("/getDayCount")
-	public ApiDailyCounter getDailyHitCount(@RequestParam("date") @DateTimeFormat(iso = ISO.DATE) LocalDate date) {
+	public Map<LocalDate, Integer> getDailyHitCount(@RequestParam("date") @DateTimeFormat(iso = ISO.DATE) LocalDate date) {
 		
 		System.out.println(date);
 		return apiCountService.getHitcountForDay(date);
@@ -37,10 +38,18 @@ public class AdminController
 	
 	
 	@GetMapping("/getWeekCount")
-	public ApiWeeklyCounter getWeekHitCount(@RequestParam("date") @DateTimeFormat(iso = ISO.DATE) LocalDate date) {
+	public Map<LocalDate, Integer> getWeekHitCount(@RequestParam("date") @DateTimeFormat(iso = ISO.DATE) LocalDate date) {
 		
 		
 		return apiCountService.getHitCountForWeek(date);
+	}
+	
+	
+	@GetMapping("/getYearCount")
+	public Map<Integer, Integer> getWeekHitCountyear() {
+			
+		
+		return apiCountService.getHitcountyear();
 	}
 	
 	

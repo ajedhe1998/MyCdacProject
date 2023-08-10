@@ -20,6 +20,7 @@ public class AdminService {
 		if(user.getEmail().equals(usr.getEmail()) && user.getPassword().equals(usr.getPassword())) {
 			apiCountService.increamentDAilyHitCount();
 			apiCountService.increamentWeeklyHitCount();
+			apiCountService.increramentYearlyHitCount();
 			return new ResponseEntity<AdminModel>(usr,HttpStatus.ACCEPTED);
 		}
 		
